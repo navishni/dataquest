@@ -1,0 +1,16 @@
+﻿# Local credentials
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local environments and generated files
+**/.venv/
+**/node_modules/
+**/dist/
+**/__pycache__/
+**/*.py[cod]
+/output/
+/tmp/

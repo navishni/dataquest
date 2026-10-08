@@ -1,0 +1,22 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+python-multipart>=0.0.9
+cryptography>=42
+argon2-cffi>=23.1
+httpx>=0.27
+pymupdf>=1.24
+pypdfium2>=4.30
+pypdf>=4.2
+pdfplumber>=0.11
+pillow>=10.3
+numpy>=1.26
+pytesseract>=0.3.10
+openpyxl>=3.1
+xlrd>=2.0.1
+charset-normalizer>=3.3
+rapidfuzz>=3.6
+sqlglot>=23
+matplotlib>=3.8
+# optional engines: paddleocr, playwright (agent 22), pix2tex (agent 10)
+pytest>=8

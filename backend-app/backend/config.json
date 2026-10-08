@@ -1,0 +1,100 @@
+{
+  "tenant_id": "default",
+  "limits": {
+    "max_size_bytes": 52428800,
+    "max_pages": 1000,
+    "max_image_pixels": 100000000,
+    "max_zip_ratio": 100,
+    "max_zip_depth": 3,
+    "max_zip_uncompressed_bytes": 524288000,
+    "max_cells_per_sheet": 50000,
+    "preview_max_rows": 100
+  },
+  "modes": ["explicit", "suggest"],
+  "formats": ["json", "markdown", "csv", "html"],
+  "export_scopes": ["source", "case", "table"],
+  "action_types": ["request_clarification", "request_missing_document", "flag_for_review"],
+  "severities": ["low", "medium", "high"],
+  "severity_thresholds": {"medium_pct": 5.0, "high_pct": 20.0},
+  "capabilities": ["upload", "view", "audit", "approve", "execute", "export", "unmask", "admin", "chat", "manage_access", "request_access", "analysis", "draft_action"],
+  "roles": {
+    "admin": ["upload", "view", "audit", "approve", "execute", "export", "unmask", "admin", "chat", "manage_access", "request_access", "analysis", "draft_action"],
+    "editor": ["upload", "view", "export", "chat", "manage_access", "analysis", "draft_action"],
+    "viewer": ["view", "request_access"]
+  },
+  "bands": {"high": 0.85, "medium": 0.6},
+  "page_classification": {
+    "native_text_min_chars": 40,
+    "blank_max_ink_ratio": 0.002,
+    "image_area_scanned_ratio": 0.6,
+    "mixed_text_min_chars": 15,
+    "render_dpi": 200
+  },
+  "layout": {"iou_merge": 0.6, "min_confidence": 0.3, "column_gap_ratio": 0.04},
+  "native_text": {"max_garbage_ratio": 0.2},
+  "ocr": {"engines": ["tesseract", "paddleocr"], "timeout_seconds": 30},
+  "equation": {"min_similarity": 0.8},
+  "assembly": {"containment_threshold": 0.5},
+  "confidence": {
+    "weights": {"engine": 0.5, "agreement": 0.2, "layout": 0.15, "validation": 0.15},
+    "arithmetic_tolerance": 0.01
+  },
+  "consensus": {
+    "engine_reliability": {"native_text": 1.0, "tesseract": 0.7, "paddleocr": 0.8},
+    "iou_align": 0.3,
+    "split_similarity": 0.85,
+    "ink_threshold": 200,
+    "min_uncovered_area_px": 150
+  },
+  "reasoning": {"tolerance_pct": 0.5, "period_tolerance_days": 5},
+  "case_linker": {
+    "weights": {"shared_entity": 0.35, "shared_id": 0.45, "date_proximity": 0.1, "same_domain": 0.1},
+    "relationship_types": ["same_party", "supporting_document", "supersedes", "unknown"],
+    "suggest_min_confidence": 0.3
+  },
+  "action_policy": {
+    "banned_terms": ["fraud", "false", "deceptive", "ineligible"],
+    "recipient_domain_allowlist": [],
+    "max_body_chars": 4000
+  },
+  "url_guard": {
+    "allow_domains": [],
+    "deny_domains": [],
+    "require_authorization_basis": false,
+    "rate_limit_per_domain_per_minute": 10,
+    "max_response_bytes": 5242880,
+    "timeout_seconds": 20
+  },
+  "audit": {"checkpoint_every_n": 100},
+  "notify": {
+    "failed_login_threshold": 5,
+    "max_attempts": 5,
+    "backoff_base_seconds": 2,
+    "severity_priority": {"normal": 3, "high": 4, "urgent": 5}
+  },
+  "export": {"url_ttl_seconds": 300, "async_block_threshold": 2000},
+  "approval": {"signature_ttl_seconds": 604800},
+  "access": {
+    "default_columns_by_role": {"admin": "all", "editor": "all", "viewer": "non_sensitive"},
+    "schema_name": "analytics",
+    "max_grant_hours": 720
+  },
+  "ui": {
+    "poll_interval_ms": 1500,
+    "accepted_types": ["application/pdf", "image/*", ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx", ".ods", ".odt", ".odp", ".csv", ".tsv", ".eml", ".html", ".htm", ".rtf", ".txt", ".md", ".markdown", ".json", ".xml", ".epub"],
+    "processing_modes": [{"id": "standard", "label": "Standard processing"}],
+    "feature_flags": {},
+    "pipeline_stages": [
+      {"id": "file_validation", "label": "File validation"},
+      {"id": "extraction", "label": "Extraction"},
+      {"id": "assembly", "label": "Assembly"},
+      {"id": "complete", "label": "Complete"}
+    ]
+  },
+  "chat": {
+    "row_cap": 500, "confirm_row_estimate": 1000, "repeat_block_threshold": 3, "timeout_ms": 5000,
+    "function_denylist": ["load_extension", "readfile", "writefile", "zeroblob", "randomblob", "sleep", "pg_sleep", "system", "eval"],
+    "memory_questions": 5
+  },
+  "rules": {"unit_sanity_max": 1000000000}
+}
